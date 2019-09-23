@@ -1,0 +1,322 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>固定 - Asynchronous Programming in Rust</title>
+        
+
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
+        <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:500" rel="stylesheet" type="text/css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        
+
+        
+    </head>
+    <body class="light">
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "../";
+            var default_theme = "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            document.body.className = theme;
+            document.querySelector('html').className = theme + ' js';
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li><a href="../01_getting_started/01_chapter.html"><strong aria-hidden="true">1.</strong> 起步</a></li><li><ol class="section"><li><a href="../01_getting_started/02_why_async.html"><strong aria-hidden="true">1.1.</strong> 为什么使用异步？</a></li><li><a href="../01_getting_started/03_state_of_async_rust.html"><strong aria-hidden="true">1.2.</strong> 异步Rust目前状态</a></li><li><a href="../01_getting_started/04_async_await_primer.html"><strong aria-hidden="true">1.3.</strong> async/.await初步</a></li><li><a href="../01_getting_started/05_http_server_example.html"><strong aria-hidden="true">1.4.</strong> 应用: HTTP服务器</a></li></ol></li><li><a href="../02_execution/01_chapter.html"><strong aria-hidden="true">2.</strong> 揭秘： 执行Future与任务（task）</a></li><li><ol class="section"><li><a href="../02_execution/02_future.html"><strong aria-hidden="true">2.1.</strong> Future特质</a></li><li><a href="../02_execution/03_wakeups.html"><strong aria-hidden="true">2.2.</strong> 用Waker唤醒任务</a></li><li><a href="../02_execution/04_executor.html"><strong aria-hidden="true">2.3.</strong> 应用：构建执行器</a></li><li><a href="../02_execution/05_io.html"><strong aria-hidden="true">2.4.</strong> 执行器与系统I/O</a></li></ol></li><li><a href="../03_async_await/01_chapter.html"><strong aria-hidden="true">3.</strong> async/await</a></li><li><a href="../04_pinning/01_chapter.html" class="active"><strong aria-hidden="true">4.</strong> 固定</a></li><li><a href="../05_streams/01_chapter.html"><strong aria-hidden="true">5.</strong> Streams</a></li><li><ol class="section"><li><a href="../05_streams/02_iteration_and_concurrency.html"><strong aria-hidden="true">5.1.</strong> 迭代与并发</a></li></ol></li><li><a href="../06_multiple_futures/01_chapter.html"><strong aria-hidden="true">6.</strong> 同时执行多个Future</a></li><li><ol class="section"><li><a href="../06_multiple_futures/02_join.html"><strong aria-hidden="true">6.1.</strong> join!</a></li><li><a href="../06_multiple_futures/03_select.html"><strong aria-hidden="true">6.2.</strong> select!</a></li></ol></li><li><a href="../07_workarounds/01_chapter.html"><strong aria-hidden="true">7.</strong> 需要知道并热爱的规避方法</a></li><li><ol class="section"><li><a href="../07_workarounds/02_return_type.html"><strong aria-hidden="true">7.1.</strong> 返回类型错误</a></li><li><a href="../07_workarounds/03_err_in_async_blocks.html"><strong aria-hidden="true">7.2.</strong> async块中的?</a></li><li><a href="../07_workarounds/04_send_approximation.html"><strong aria-hidden="true">7.3.</strong> Send模拟</a></li><li><a href="../07_workarounds/05_recursion.html"><strong aria-hidden="true">7.4.</strong> 递归</a></li><li><a href="../07_workarounds/06_async_in_traits.html"><strong aria-hidden="true">7.5.</strong> 特质中的async</a></li></ol></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                
+                <div id="menu-bar" class="menu-bar">
+                    <div id="menu-bar-sticky-container">
+                        <div class="left-buttons">
+                            <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                                <i class="fa fa-bars"></i>
+                            </button>
+                            <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                                <i class="fa fa-paint-brush"></i>
+                            </button>
+                            <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                                <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                            </ul>
+                            
+                            <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                                <i class="fa fa-search"></i>
+                            </button>
+                            
+                        </div>
+
+                        <h1 class="menu-title">Asynchronous Programming in Rust</h1>
+
+                        <div class="right-buttons">
+                            <a href="../print.html" title="Print this book" aria-label="Print this book">
+                                <i id="print-button" class="fa fa-print"></i>
+                            </a>
+                            
+                        </div>
+                    </div>
+                </div>
+
+                
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" name="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1><a class="header" href="#固定pinning" id="固定pinning">固定（Pinning）</a></h1>
+<p>为了轮询future，future首先要用特殊类型<code>Pin&lt;T&gt;</code>来固定。如果你读了前面《执行<code>Future</code>与
+任务小节中关于<code>Future</code>退出的解释，你会从<code>Future::poll</code>方法的定义中认出<code>Pin</code>。但这意味
+什么？我们为什么需要它？</p>
+<h2><a class="header" href="#为什么需要固定" id="为什么需要固定">为什么需要固定</a></h2>
+<p>固定保证对象永不移动。为了理解这为什么必须，我们回忆一下<code>async</code>/<code>.await</code>怎么工作吧。
+考虑以下代码：</p>
+<pre><pre class="playpen"><code class="language-rust no_run">
+# #![allow(unused_variables)]
+#fn main() {
+let fut_one = ...;
+let fut_two = ...;
+async move {
+    fut_one.await;
+    fut_two.await;
+}
+#}</code></pre></pre>
+<p>这段代码实际上创建了一个实现了<code>Future</code>特质的匿名类型，提供了<code>poll</code>方法，如下：</p>
+<pre><pre class="playpen"><code class="language-rust no_run">
+# #![allow(unused_variables)]
+#fn main() {
+// The `Future` type generated by our `async { ... }` block
+struct AsyncFuture {
+    fut_one: FutOne,
+    fut_two: FutTwo,
+    state: State,
+}
+
+// List of states our `async` block can be in
+enum State {
+    AwaitingFutOne,
+    AwaitingFutTwo,
+    Done,
+}
+
+impl Future for AsyncFuture {
+    fn poll(self: Pin&lt;&amp;mut Self&gt;, cx: &amp;mut Context&lt;'_&gt;) -&gt; Poll&lt;()&gt; {
+        loop {
+            match self.state {
+                State::AwaitingFutOne =&gt; match self.fut_one.poll(..) {
+                    Poll::Ready(()) =&gt; self.state = State::AwaitingFutTwo,
+                    Poll::Pending =&gt; return Poll::Pending,
+                }
+                State::AwaitingFutTwo =&gt; match self.fut_two.poll(..) {
+                    Poll::Ready(()) =&gt; self.state = State::Done,
+                    Poll::Pending =&gt; return Poll::Pending,
+                }
+                State::Done =&gt; return Poll::Ready(()),
+            }
+        }
+    }
+}
+#}</code></pre></pre>
+<p>当<code>poll</code>第一次调用时，它会轮询<code>fut_one</code>。如果<code>fut_one</code>不能完成，那么
+<code>AsyncFuture::poll</code>就会返回。调用<code>poll</code>的Future会从上次中断的地方继续。这个过程会持续
+到future成功完成。</p>
+<p>然而，如果我们在<code>async</code>块中用了引用呢？例如：</p>
+<pre><pre class="playpen"><code class="language-rust no_run">
+# #![allow(unused_variables)]
+#fn main() {
+async {
+    let mut x = [0; 128];
+    let read_into_buf_fut = read_into_buf(&amp;mut x);
+    read_into_buf_fut.await;
+    println!(&quot;{:?}&quot;, x);
+}
+#}</code></pre></pre>
+<p>这会编译成什么结构呢？</p>
+<pre><pre class="playpen"><code class="language-rust">
+# #![allow(unused_variables)]
+#fn main() {
+struct ReadIntoBuf&lt;'a&gt; {
+    buf: &amp;'a mut [u8], // points to `x` below
+}
+
+struct AsyncFuture {
+    x: [u8; 128],
+    read_into_buf_fut: ReadIntoBuf&lt;'what_lifetime?&gt;,
+}
+#}</code></pre></pre>
+<p>这里，<code>ReadIhtoBuf</code>future持有了一个指向其他字段<code>x</code>的引用。然而，如果<code>AsyncFuture</code>被
+移动了，<code>x</code>的位置（location）也会被移走，使得存储在<code>read_into_buf_fut.buf</code>的指针失效。</p>
+<p>固定future到内存特定位置则阻止了这种问题，让创建指向<code>async</code>块的引用变得安全。</p>
+<h2><a class="header" href="#如何固定" id="如何固定">如何固定？</a></h2>
+<p><code>Pin</code>类型包装了指针类型，保证了指针指向的值不会被移走。例如，<code>Pin&lt;&amp;mut T&gt;</code>，<code>Pin&lt;&amp;T&gt;</code>
+和<code>Pin&lt;Box&lt;T&gt;&gt;</code>全都保证了<code>T</code>不会被移走。</p>
+<p>多数类型被移走也不会有问题。这些类型实现了<code>Unpin</code>特质。指向<code>Unpin</code>类型的指针能够自由地
+放进<code>Pin</code>，或取走。例如，<code>u8</code>是<code>Unpin</code>的，所以<code>Pin&lt;&amp;mut T&gt;</code>的行为就像普通的<code>&amp;mut T</code>。</p>
+<p>一些函数需要他们协作的future是<code>Unpin</code>的。为了让这些函数使用不是<code>Unpin</code>的<code>Future</code>或
+<code>Stream</code>，你首先需要这个值固定，要么用<code>Box::pin</code>（创建<code>Pin&lt;Box&lt;T&gt;&gt;</code>）要么使用
+<code>pin_utils::pin_mut!</code>（创建<code>Pin&lt;&amp;mut T&gt;</code>）。<code>Pin&lt;Box&lt;Fut&gt;&gt;</code>和<code>Pin&lt;&amp;mut Fut&gt;</code>都能
+用作future，并且都实现了<code>Unpin</code>。</p>
+<p>例如：</p>
+<pre><pre class="playpen"><code class="language-rust no_run">
+# #![allow(unused_variables)]
+#fn main() {
+use pin_utils::pin_mut; // `pin_utils` is a handy crate available on crates.io
+
+// A function which takes a `Future` that implements `Unpin`.
+fn execute_unpin_future(x: impl Future&lt;Output = ()&gt; + Unpin) { ... }
+
+let fut = async { ... };
+execute_unpin_future(fut); // Error: `fut` does not implement `Unpin` trait
+
+// Pinning with `Box`:
+let fut = async { ... };
+let fut = Box::pin(fut);
+execute_unpin_future(fut); // OK
+
+// Pinning with `pin_mut!`:
+let fut = async { ... };
+pin_mut!(fut);
+execute_unpin_future(fut); // OK
+#}</code></pre></pre>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                        
+                            <a rel="prev" href="../03_async_await/01_chapter.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                        
+
+                        
+                            <a rel="next" href="../05_streams/01_chapter.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                
+                    <a href="../03_async_await/01_chapter.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                
+
+                
+                    <a href="../05_streams/01_chapter.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+                
+            </nav>
+
+        </div>
+
+        
+
+        
+
+        
+
+        
+        <script src="../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../searcher.js" type="text/javascript" charset="utf-8"></script>
+        
+
+        <script src="../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+        
+
+        
+
+    </body>
+</html>
