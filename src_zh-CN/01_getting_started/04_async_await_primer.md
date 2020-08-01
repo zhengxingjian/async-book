@@ -3,6 +3,12 @@
 实现了`Future`特质的状态机。使用同步方法调用阻塞函数会阻塞整个线程，但阻塞`Future`只会
 让出（yield）线程控制权，让其他`Future`继续执行。
 
+我们来加些依赖到 `Cargo.toml` 文件：
+
+```toml
+{{#include ../../examples/01_04_async_await_primer/Cargo.toml:9:10}}
+```
+
 你可以使用`async fn`语法创建异步函数：
 
 ```rust,no_run
