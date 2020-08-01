@@ -17,6 +17,8 @@ before_script:
 
 script:
   - bash ci/spellcheck.sh list
+  - rm -rf src
+  - mv src_zh-CN src
   - mdbook build
   - cargo test --all --manifest-path=./examples/Cargo.toml --target-dir ./target
 
