@@ -1,10 +1,10 @@
 # 固定（Pinning）
 
-为了轮询 future，future 首先要用特殊类型 `Pin<T>` 来固定。如果你读了前面《执行 `Future` 与任务小节中关于 `Future` 退出的解释，你会从 `Future::poll` 方法的定义中认出 `Pin`。但这意味什么？我们为什么需要它？
+为了轮询 future，future 首先要用特殊类型 `Pin<T>` 来固定。如果你读了前面《执行 `Future` 与任务》小节中关于 `Future` 退出的解释，你会从 `Future::poll` 方法的定义中认出 `Pin`。但这意味什么？我们为什么需要它？
 
 ## 为什么需要固定
 
-固定保证对象永不移动。为了理解这为什么必须，我们回忆一下 `async`/`.await` 怎么工作吧。考虑以下代码：
+`Pin` 和 `Unpin` 标记特质搭配使用。固定保证了实现了 `Unpin` 特质的对象不会被移动。为了理解这为什么必须，我们回忆一下 `async`/`.await` 怎么工作吧。考虑以下代码：
 
 ```rust,edition2018,ignore
 let fut_one = ...;
@@ -81,6 +81,8 @@ struct AsyncFuture {
 
 固定 future 到内存特定位置则阻止了这种问题，让创建指向 `async` 块的引用变得安全。
 
+## 固定的细节
+
 ## 如何固定？
 
 `Pin` 类型包装了指针类型，保证了指针指向的值不会被移走。例如，`Pin<&mut T>`，`Pin<&T>` 和 `Pin<Box<T>>` 全都保证了 `T` 不会被移走。
@@ -113,3 +115,8 @@ execute_unpin_future(fut); // OK
 
 ["Executing `Future`s and Tasks"]: ../02_execution/01_chapter.md
 [the `Future` trait]: ../02_execution/02_future.md
+
+## 固定到栈上
+## 固定到堆上
+
+## 总结
