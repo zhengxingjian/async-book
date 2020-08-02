@@ -10,7 +10,7 @@
 {{#include ../../examples/01_05_http_server/Cargo.toml:9:18}}
 ```
 
-现在我们搞定了依赖，让我们开始写代码。我们要导入（import）些东西：
+现在我们搞定了依赖，让我们开始写些代码吧。我们要导入（import）些东西：
 
 ```rust,ignore
 {{#include ../../examples/01_05_http_server/src/lib.rs:imports}}
