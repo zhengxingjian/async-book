@@ -1,6 +1,8 @@
 # `join!`
 `futures::join` 宏等待并发执行的多个不同 future 完成。
 
+## `join!`
+
 当进行多个异步操作时，可以简单地用 `.await` 串行执行：
 
 ```rust,no_run

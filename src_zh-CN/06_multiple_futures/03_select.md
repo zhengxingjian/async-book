@@ -37,7 +37,9 @@
 
 ## 带有 `Fuse` 和 `FuturesUnordered` 的 `select` 循环中的并发任务
 
-有个不太好找但是很趁手的函数叫 `Fuse::terminated()`。这个函数允许构造已经被终止的空 future，并且能够在之后填进需要运行的 future。这个在一个任务需要 `select` 循环中运行但是它本身是在 `select` 循环中创建的场景中很好用。
+有个不太好找但是很趁手的函数叫 `Fuse::terminated()`。这个函数允许构造已经被终止的空 future，并且能够在之后填进需要运行的 future。
+
+这个在一个任务需要 `select` 循环中运行但是它本身是在 `select` 循环中创建的场景中很好用。
 
 注意 `.select_next_some()` 函数的是使用。这可以用在 `select` 上，并且只运行从 stream 返回的 `Some(_)` 值而忽略 `None`。
 
